@@ -52,6 +52,19 @@ format markdown
 reader aiPrimary humanSecondary
 ```
 
+## Measured savings
+
+Informal measurements on a GPT-style BPE tokenizer (token-calculator.net) give a saving range of **17%-50%**, depending heavily on content density.
+
+| Block style | Example | Saving |
+|---|---|---:|
+| Jargon-heavy (project/tech names) | case 001 `javaCrud`, `learnJava`, `maven` | ~45% (EN) / ~50% (PT-BR) |
+| Descriptive prose (compound concepts) | case 002 `storeProjectCtx`, `aiPrimary` | ~17% |
+
+CMN compresses *dense terminology* well and *plain English* poorly: BPE tokenizers already encode `the`, `to`, `a`, `in` as 1 token each, so there's little to save on function words; the wins come from replacing entire sentences with short structural keys. Portuguese prose tokenizes worse than English, so PT-BR users save more in absolute terms on the same CMN block.
+
+Full numbers and methodology: [docs/cmn/tests.md §10](docs/cmn/tests.md#10-test-record). Treat any single saving% as a per-block fact, not a universal property of CMN.
+
 ## Docs
 
 - [docs/notations/README.md](docs/notations/README.md) — how each notation works
@@ -71,4 +84,4 @@ Portuguese version of this README: [README.pt-BR.md](README.pt-BR.md).
 meaning > consistency > tokenSaving > beauty
 ```
 
-A notation is only good if it saves tokens without destroying meaning. Until empirical measurements exist for a notation, treat its savings claims as a hypothesis.
+A notation is only good if it saves tokens without destroying meaning. CMN has its first empirical measurements (see "Measured savings" above); the other notations in the family remain unmeasured hypotheses.

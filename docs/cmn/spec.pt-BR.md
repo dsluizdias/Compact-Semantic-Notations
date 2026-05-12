@@ -31,6 +31,8 @@ reader aiPrimary humanSecondary
 goal lowTokens keepMeaning lowAmbiguity
 ```
 
+**A economia esperada varia com o conteúdo.** Blocos com jargão denso (nomes de projeto, termos técnicos, identificadores) mediram ~45% de economia; prosa descritiva com conceitos compostos mediu ~17%. A NMC comprime terminologia densa bem e inglês corrente mal — ver [tests.pt-BR.md §10](tests.pt-BR.md#10-registro-de-testes). Trate qualquer número de economia como um fato por-bloco, não como propriedade universal da NMC.
+
 ---
 
 ## 2. Princípio central
@@ -234,6 +236,8 @@ project_context
 
 Motivo: `_` pode quebrar a tokenização e aumentar custo.
 
+**Nota sobre tokenização:** em tokenizers BPE (famílias GPT/Claude), identificadores em camelCase são divididos em sub-palavras — `javaCrud` vira `java` + `Crud`, `gameLibrary` vira `game` + `Library`. A economia da NMC vem da *concisão* (menos palavras por bloco), não de identificadores amigáveis ao tokenizer. Não espere que cada termo composto custe um único token.
+
 ---
 
 ## 9. Letras maiúsculas
@@ -367,6 +371,8 @@ nx next
 ```
 
 **Atenção:** L3 contradiz o princípio central (`meaning > consistency > tokenSaving > beauty`) quando o dicionário não está colado ao bloco. Chaves de uma letra (`p`, `g`, `s`, `r`) são ambíguas para humanos e podem ser tokenizadas de forma imprevisível, anulando a economia esperada.
+
+**Medido (caso 001, BPE GPT):** L1 = 25 tok, **L2 = 23 tok**, L3 = 24 tok. L3 é dominado — perde para L2 em tokens *e* em legibilidade, e só ganha de L1 por 1 token. As chaves de uma letra (`g`, `a`, `nx`, `p`, `s`) tokenizam como 1 token cada, mas `goal`, `app`, `next`, `project`, `state` já eram 1 token cada em BPE, então a substituição não economiza nas chaves; o único ganho real é `c1` (2 tok) vs `cmn1` (3 tok). **L3 é candidato a remoção na spec v2** a menos que medições em blocos maiores mudem o quadro.
 
 Regra:
 

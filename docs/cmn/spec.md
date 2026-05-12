@@ -31,6 +31,8 @@ reader aiPrimary humanSecondary
 goal lowTokens keepMeaning lowAmbiguity
 ```
 
+**Expected savings vary by content.** Jargon-heavy blocks (project names, tech terms, identifiers) measured ~45% savings; descriptive prose with compound concepts measured ~17%. CMN compresses dense terminology well and plain English poorly — see [tests.md §10](tests.md#10-test-record). Treat any single saving% as a per-block fact, not a universal property of CMN.
+
 ---
 
 ## 2. Core principle
@@ -234,6 +236,8 @@ project_context
 
 Reason: `_` can break tokenization and increase cost.
 
+**Tokenizer note:** in BPE tokenizers (GPT/Claude families), camelCase identifiers split into subword pieces — `javaCrud` becomes `java` + `Crud`, `gameLibrary` becomes `game` + `Library`. CMN's savings come from *terseness* (fewer words per block), not from tokenizer-friendly identifiers. Don't expect every compound term to cost one token.
+
 ---
 
 ## 9. Uppercase letters
@@ -367,6 +371,8 @@ nx next
 ```
 
 **Warning:** L3 contradicts the core principle (`meaning > consistency > tokenSaving > beauty`) when the dictionary is not adjacent to the block. Single-letter keys (`p`, `g`, `s`, `r`) are ambiguous to humans and can be tokenized unpredictably, erasing the expected savings.
+
+**Measured (case 001, GPT BPE):** L1 = 25 tok, **L2 = 23 tok**, L3 = 24 tok. L3 is dominated — it loses to L2 on tokens *and* on legibility, while only beating L1 by 1 token. The single-letter keys (`g`, `a`, `nx`, `p`, `s`) tokenize as 1 token each, but `goal`, `app`, `next`, `project`, `state` were already 1 token each in BPE, so the substitution buys nothing on the keys; the only real win is `c1` (2 tok) vs `cmn1` (3 tok). **L3 is a candidate for removal in spec v2** unless measurements at larger block sizes change the picture.
 
 Rule:
 

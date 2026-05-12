@@ -56,7 +56,7 @@ Interpretação: a NMC economizou 55% dos tokens em relação ao texto normal.
 | `70-90%` | agressiva |
 | `90%+` | risco alto de perda de significado |
 
-A meta recomendada para uso real é entre `40-70%`.
+Estas faixas são metas nominais, não garantias. A economia medida depende fortemente da densidade do conteúdo: blocos com jargão denso (caso 001) caem em `boa` (~45%), enquanto prosa descritiva com conceitos compostos (caso 002) cai em `útil` (~17%). Ver as conclusões da §10 para o motivo.
 
 ---
 
@@ -224,11 +224,35 @@ Requer `tiktoken` (`pip install tiktoken` ou `sudo pacman -S python-tiktoken`).
 
 | Caso | Normal tokens | NMC tokens | Economia | Significado preservado | Expansão correta | Notas |
 |---|---:|---:|---:|---|---|---|
-| 001 javaCrud | TBD | TBD | TBD | y | y | rodar `tools/measure_tokens.py` |
-| 002 aiContext | TBD | TBD | TBD | y | y | rodar `tools/measure_tokens.py` |
+| 001 javaCrud (EN, L1) | 42 | 25 | 40% | y | y | token-calculator.net (GPT BPE) |
+| 001 javaCrud (EN, L2) | 42 | 23 | 45% | y | y | melhor nível para este caso |
+| 001 javaCrud (EN, L3) | 42 | 24 | 43% | maybe | maybe | perde para L2 — ver §12.3 |
+| 001 javaCrud (PT-BR, L1) | 50 | 25 | 50% | y | y | chaves NMC são em inglês por spec |
+| 002 aiContext (EN, L1) | 47 | 39 | 17% | y | y | chaves compostas penalizam — ver conclusões |
 | 003 aggressive | TBD | TBD | TBD | maybe | maybe | compressão perigosa, ver §8 |
 
 Registrar resultados por tokenizer (cl100k_base ≈ GPT-4 / 3.5; o200k_base ≈ GPT-4o; tokenizers Claude podem diferir).
+
+### Caso 001 — todas as medições (token-calculator.net, BPE estilo GPT)
+
+| Forma | Tokens | vs prosa EN (42) |
+|---|---:|---:|
+| Prosa EN | 42 | — |
+| Prosa PT-BR | 50 | +19% (PT-BR custa mais tokens) |
+| Forma "avoid" (maiúsculas + `\|`, `=`, `_`, `+`) | 36 | -14% |
+| NMC L1 | 25 | -40% |
+| **NMC L2** | **23** | **-45% (vencedor)** |
+| NMC L3 | 24 | -43% |
+
+Conclusões:
+
+- **A economia varia muito conforme o conteúdo.** O caso 001 (jargão técnico: `javaCrud`, `learnJava`, `maven`) deu 45%. O caso 002 (prosa descritiva com conceitos compostos: `storeProjectCtx`, `aiPrimary`, `humanSecondary`) deu apenas 17%. A faixa "good 40-70%" da §3 reflete o melhor cenário (jargão denso), não o típico (prosa descritiva). A NMC comprime *terminologia densa* bem e *inglês corrente* mal, porque o BPE já codifica palavras funcionais (`the`, `to`, `a`, `in`) como 1 token cada — sobra pouco para economizar.
+- **NMC L2 é o vencedor empírico** do caso 001. Bate L1 por 2 tokens e L3 por 1, mantendo legibilidade.
+- **L3 é dominado.** Fica entre L1 e L2 — economiza 1 token sobre L1 (`c1` vs `cmn1`) mas perde 1 para L2. Não há bloco em que L3 vença em tokens *e* em legibilidade. Recomendar remoção de L3 da spec v2 a menos que medições em blocos maiores mudem o quadro.
+- **Usuários PT-BR economizam mais em termos absolutos** (~50% vs ~45% em EN) porque palavras PT-BR fragmentam pior: `aplicação` → `aplic` + `ação`, `próximos` → `pró` + `x` + `imos`.
+- `nmc1` tokeniza como `n` + `mc` + `1` = 3 tokens (similar a `cmn1` no inglês). Todo bloco paga essa "taxa" no cabeçalho.
+- Identificadores camelCase são divididos em sub-palavras (`javaCrud` → `java` + `Crud`). Ver [spec.pt-BR.md §8](spec.pt-BR.md#8-termos-compostos).
+- Chaves de uma letra não economizam tokens porque `goal`/`app`/`next`/`project`/`state` já eram 1 token cada em BPE.
 
 ---
 

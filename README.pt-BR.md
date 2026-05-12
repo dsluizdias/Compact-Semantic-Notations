@@ -52,6 +52,19 @@ format markdown
 reader aiPrimary humanSecondary
 ```
 
+## Economia medida
+
+Medições informais em um tokenizer BPE estilo GPT (token-calculator.net) dão uma faixa de **17%-50%** de economia, dependendo fortemente da densidade do conteúdo.
+
+| Tipo de bloco | Exemplo | Economia |
+|---|---|---:|
+| Jargão denso (nomes de projeto/tech) | caso 001 `javaCrud`, `learnJava`, `maven` | ~45% (EN) / ~50% (PT-BR) |
+| Prosa descritiva (conceitos compostos) | caso 002 `storeProjectCtx`, `aiPrimary` | ~17% |
+
+A NMC comprime *terminologia densa* bem e *inglês corrente* mal: tokenizers BPE já codificam `the`, `to`, `a`, `in` como 1 token cada, então sobra pouco para economizar em palavras funcionais; o ganho vem de substituir frases inteiras por chaves estruturais curtas. Prosa em português tokeniza pior que em inglês, então usuários PT-BR economizam mais em termos absolutos sobre o mesmo bloco NMC.
+
+Números completos e metodologia: [docs/cmn/tests.pt-BR.md §10](docs/cmn/tests.pt-BR.md#10-registro-de-testes). Trate qualquer número de economia como um fato por-bloco, não como propriedade universal da NMC.
+
 ## Documentação
 
 - [docs/notations/README.pt-BR.md](docs/notations/README.pt-BR.md) — como cada notação funciona
@@ -71,4 +84,4 @@ Versão em inglês deste README: [README.md](README.md).
 meaning > consistency > tokenSaving > beauty
 ```
 
-Uma notação só é boa se economizar tokens sem destruir o significado. Enquanto não existirem medições empíricas para uma notação, trate suas alegações de economia como hipótese.
+Uma notação só é boa se economizar tokens sem destruir o significado. A NMC tem suas primeiras medições empíricas (ver "Economia medida" acima); as outras notações da família continuam como hipóteses não medidas.
