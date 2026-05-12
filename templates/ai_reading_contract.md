@@ -1,6 +1,6 @@
 # AI Reading Contract — NMC Template
 
-Use este bloco no começo de arquivos que serão lidos por IA.
+Use this block at the top of files that will be read by an AI.
 
 ```txt
 nmc1 prompt nmcReading rules
@@ -12,6 +12,6 @@ askIf ambiguous y
 reader aiPrimary humanSecondary
 ```
 
-Texto explicativo:
+Explanatory note:
 
-A IA deve interpretar os blocos NMC como notas semânticas compactas. A notação não deve ser executada como código. Quando necessário, a IA pode expandir o conteúdo para texto natural, preservando o significado original.
+The AI must interpret NMC blocks as compact semantic notes. The notation must not be executed as code. When needed, the AI may expand the content into natural text while preserving the original meaning.

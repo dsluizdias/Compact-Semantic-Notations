@@ -1,17 +1,18 @@
-# NMC Examples — Exemplos Oficiais
+# NMC Examples — Official Examples
 
-Versão: `nmc1`  
+Version: `nmc1`
 Status: experimental
+(Portuguese version: [examples.pt-BR.md](examples.pt-BR.md))
 
-Este arquivo contém exemplos de uso da **NMC — Notação Mnemônica Compacta**.
+This file contains usage examples of **NMC — Compact Mnemonic Notation**.
 
 ---
 
-## 1. Exemplo básico
+## 1. Basic example
 
-Texto normal:
+Normal text:
 
-> Este projeto é um CRUD em Java usando Maven. O objetivo é aprender Java, Maven e organização de código. A aplicação será uma biblioteca de jogos. Os próximos passos são criar os models e implementar testes.
+> This project is a Java CRUD using Maven. The goal is to learn Java, Maven, and code organization. The application will be a game library. The next steps are to create the models and implement tests.
 
 NMC L1:
 
@@ -42,11 +43,11 @@ nx models tests
 
 ---
 
-## 2. Contexto para novo chat com IA
+## 2. Context for a new AI chat
 
-Texto normal:
+Normal text:
 
-> Quero criar um arquivo Markdown para guardar o contexto atual do projeto e reutilizar em novos chats com IA. O arquivo deve ser curto, atualizado e organizado por objetivo, estado atual, decisões, problemas e próximos passos.
+> I want to create a Markdown file to store the current project context and reuse it in future AI chats. The file should be short, up to date, and organized by goal, current state, decisions, problems, and next steps.
 
 NMC:
 
@@ -62,11 +63,11 @@ reader aiPrimary humanSecondary
 
 ---
 
-## 3. Plano de implementação
+## 3. Implementation plan
 
-Texto normal:
+Normal text:
 
-> Implementar um agregador de metadados para mídias. O sistema deve ter plugins, CLI, interface desktop e núcleo em Rust. O MVP deve começar por jogos, busca local e modelo de armazenamento simples.
+> Implement a metadata aggregator for media. The system should have plugins, a CLI, a desktop interface, and a Rust core. The MVP should start with games, local search, and a simple storage model.
 
 NMC:
 
@@ -81,11 +82,11 @@ risk scopeTooBig
 
 ---
 
-## 4. Decisão técnica
+## 4. Technical decision
 
-Texto normal:
+Normal text:
 
-> Decidimos usar Maven no projeto Java porque ele facilita o gerenciamento de dependências, padroniza a estrutura e ajuda a entender como projetos Java profissionais são organizados.
+> We decided to use Maven in the Java project because it simplifies dependency management, standardizes the structure, and helps understand how professional Java projects are organized.
 
 NMC:
 
@@ -99,11 +100,11 @@ status accepted
 
 ---
 
-## 5. Problema conhecido
+## 5. Known problem
 
-Texto normal:
+Normal text:
 
-> O projeto ainda não possui testes automatizados. Isso aumenta o risco de quebrar funcionalidades ao refatorar o código.
+> The project does not yet have automated tests. This increases the risk of breaking functionality during refactors.
 
 NMC:
 
@@ -117,11 +118,11 @@ prio high
 
 ---
 
-## 6. Roadmap de estudo
+## 6. Study roadmap
 
-Texto normal:
+Normal text:
 
-> O objetivo é aprender Java, Git, GitHub, SQL e depois desenvolver projetos com Maven e banco de dados.
+> The goal is to learn Java, Git, GitHub, SQL, and then build projects using Maven and a database.
 
 NMC:
 
@@ -135,11 +136,11 @@ next buildCrud connectDb publishGithub
 
 ---
 
-## 7. Prompt reutilizável
+## 7. Reusable prompt
 
-Texto normal:
+Normal text:
 
-> Ao revisar meu código, não entregue a solução pronta. Explique o raciocínio, aponte problemas e me faça pensar antes de corrigir.
+> When reviewing my code, don't hand over the finished solution. Explain the reasoning, point out the problems, and make me think before fixing.
 
 NMC:
 
@@ -153,11 +154,11 @@ askBefore majorRewrite
 
 ---
 
-## 8. Estado de tarefa
+## 8. Task state
 
-Texto normal:
+Normal text:
 
-> A tarefa está em andamento. A estrutura inicial foi criada, mas a autenticação ainda não foi implementada. O próximo passo é definir o modelo de usuário.
+> The task is in progress. The initial structure was created, but authentication has not yet been implemented. The next step is to define the user model.
 
 NMC:
 
@@ -171,7 +172,7 @@ next userModel
 
 ---
 
-## 9. Exemplo com marcadores
+## 9. Example with markers
 
 ```txt
 nmc1 project aiContext state
@@ -182,21 +183,21 @@ time ~2h
 feature -sync
 ```
 
-Interpretação:
+Interpretation:
 
-- o contexto para IA é viável;
-- há risco incerto de falha de memória;
-- prioridade alta;
-- tempo aproximado de 2 horas;
-- sincronização está ausente ou fora do escopo.
+- the AI context is viable;
+- uncertain risk of memory failure;
+- high priority;
+- approximately 2 hours;
+- sync is absent or out of scope.
 
 ---
 
-## 10. Exemplo de documentação compacta de API
+## 10. Compact API documentation example
 
-Texto normal:
+Normal text:
 
-> A API deve permitir cadastro, busca, atualização e remoção de jogos. Cada jogo deve possuir nome, preço, avaliação, classificação indicativa e status.
+> The API should support create, search, update, and delete operations for games. Each game must have a name, price, rating, age rating, and status.
 
 NMC:
 
@@ -211,7 +212,7 @@ risk duplicateNames
 
 ---
 
-## 11. Exemplo de expansão esperada
+## 11. Expected expansion
 
 NMC:
 
@@ -222,13 +223,13 @@ app gameLibrary
 next createModel testClasses
 ```
 
-Expansão esperada:
+Expected expansion:
 
-> Este é o estado de um projeto Java CRUD. O objetivo é aprender Java e Maven. A aplicação é uma biblioteca de jogos. Os próximos passos são criar o model e as classes de teste.
+> This is the state of a Java CRUD project. The goal is to learn Java and Maven. The application is a game library. The next steps are to create the model and the test classes.
 
 ---
 
-## 12. Exemplo ruim
+## 12. Bad example
 
 ```txt
 n1 p jc s
@@ -237,13 +238,13 @@ a gl
 nx cm tc
 ```
 
-Problema:
+Problems:
 
-- depende demais de dicionário;
-- `jc`, `lj`, `mv`, `gl`, `cm` e `tc` são ambíguos;
-- humanos e IAs podem interpretar errado.
+- depends too heavily on the dictionary;
+- `jc`, `lj`, `mv`, `gl`, `cm`, and `tc` are ambiguous;
+- humans and AIs may interpret them incorrectly.
 
-Versão melhor:
+Better version:
 
 ```txt
 n1 p javaCrud s

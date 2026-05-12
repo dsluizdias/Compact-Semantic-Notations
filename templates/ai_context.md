@@ -1,6 +1,6 @@
-# AI_CONTEXT.md — Template NMC
+# AI_CONTEXT.md — NMC Template
 
-Este arquivo guarda contexto reutilizável para leitura recorrente por IA.
+This file stores reusable context for recurrent AI reading.
 
 ```txt
 nmc1 doc aiContext state

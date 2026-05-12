@@ -1,28 +1,28 @@
-# NMC Spec — Notação Mnemônica Compacta
+# NMC Spec — Compact Mnemonic Notation
 
-Versão: `nmc1`  
-Status: experimental  
-Idioma base desta especificação: PT-BR
+Version: `nmc1`
+Status: experimental
+Base language of this spec: English (Portuguese version: [spec.pt-BR.md](spec.pt-BR.md))
 
-A **NMC (Notação Mnemônica Compacta)** é uma notação compacta, estruturada e semântica para armazenar documentação, planos de implementação, decisões e contexto de projeto que humanos talvez não releiam com frequência, mas que IAs podem precisar consumir repetidamente.
+**NMC (Compact Mnemonic Notation)** is a compact, structured, semantic notation for storing documentation, implementation plans, decisions, and project context that humans may not reread often but that AIs may need to consume repeatedly.
 
-Ela **não é uma linguagem de programação**.  
-Ela é um padrão de escrita para contexto reutilizável por IA.
+It is **not a programming language**.
+It is a writing convention for AI-reusable context.
 
 ---
 
-## 1. Objetivo
+## 1. Purpose
 
-A NMC existe para:
+NMC exists to:
 
-- reduzir uso de tokens;
-- preservar significado;
-- manter contexto reutilizável;
-- facilitar leitura recorrente por IA;
-- registrar decisões, estados e planos de projeto;
-- evitar documentação longa demais para ser relida a cada novo chat.
+- reduce token usage;
+- preserve meaning;
+- keep context reusable;
+- make recurrent AI reading easier;
+- record decisions, states, and project plans;
+- avoid documentation that is too long to reread on every new chat.
 
-Resumo em NMC:
+Summary in NMC:
 
 ```txt
 nmc1 spec purpose
@@ -33,28 +33,28 @@ goal lowTokens keepMeaning lowAmbiguity
 
 ---
 
-## 2. Princípio central
+## 2. Core principle
 
-A ordem de prioridade da NMC é:
+NMC priority order:
 
 ```txt
 meaning > consistency > tokenSaving > beauty
 ```
 
-Interpretação:
+Interpretation:
 
-1. o significado deve ser preservado;
-2. a estrutura deve ser consistente;
-3. a economia de tokens deve ser buscada;
-4. a aparência visual é secundária.
+1. meaning must be preserved;
+2. structure must be consistent;
+3. token savings should be pursued;
+4. visual appearance is secondary.
 
-Se uma compressão economizar tokens, mas criar ambiguidade séria, ela deve ser evitada.
+If a compression saves tokens but creates serious ambiguity, it must be avoided.
 
 ---
 
-## 3. Contrato de leitura para IA
+## 3. AI reading contract
 
-Uma IA deve interpretar NMC como notas semânticas compactas, não como código executável.
+An AI must interpret NMC as compact semantic notes, not as executable code.
 
 ```txt
 readMode semanticCompact
@@ -64,20 +64,20 @@ preserveMeaning y
 askIf ambiguous y
 ```
 
-Regras de leitura:
+Reading rules:
 
-- expandir abreviações com base no contexto;
-- preservar o significado original;
-- não executar como código;
-- não tratar como JSON, YAML ou linguagem formal;
-- perguntar quando houver ambiguidade relevante;
-- aceitar que algumas chaves são convencionais, não obrigatórias.
+- expand abbreviations from context;
+- preserve original meaning;
+- do not execute as code;
+- do not treat as JSON, YAML, or any formal language;
+- ask when ambiguity is material;
+- accept that some keys are conventional, not mandatory.
 
 ---
 
-## 4. Estrutura básica
+## 4. Basic structure
 
-Um bloco NMC deve seguir esta estrutura:
+An NMC block follows this structure:
 
 ```txt
 nmc1 domain topic type
@@ -85,7 +85,7 @@ key value value
 key value value
 ```
 
-Exemplo:
+Example:
 
 ```txt
 nmc1 project javaCrud state
@@ -94,54 +94,54 @@ app gameLibrary
 next createModel testClasses
 ```
 
-Interpretação:
+Interpretation:
 
-- `nmc1`: versão da notação;
-- `project`: domínio;
-- `javaCrud`: tópico;
-- `state`: tipo do bloco;
-- `goal`: objetivo;
-- `app`: aplicação;
-- `next`: próximos passos.
+- `nmc1`: notation version;
+- `project`: domain;
+- `javaCrud`: topic;
+- `state`: block type;
+- `goal`: goal;
+- `app`: application;
+- `next`: next steps.
 
 ---
 
-## 5. Cabeçalho
+## 5. Header
 
-Formato recomendado:
+Recommended format:
 
 ```txt
 nmc1 domain topic type
 ```
 
-Exemplos:
+Examples:
 
 ```txt
 nmc1 project mediaLib plan
 nmc1 study java roadmap
-nmc1 doc api decisions
+nmc1 doc api decision
 nmc1 task authBug state
 ```
 
-Evitar, como padrão:
+Avoid, as default:
 
 ```txt
 NMCv1|PROJECT|JAVA_CRUD|STATE
 ```
 
-Motivo: símbolos como `|`, `_`, `=` e uso excessivo de maiúsculas podem aumentar a quantidade de tokens dependendo do tokenizer.
+Reason: symbols like `|`, `_`, `=`, and heavy uppercase can inflate token counts depending on the tokenizer.
 
 ---
 
-## 6. Linhas de conteúdo
+## 6. Content lines
 
-Formato recomendado:
+Recommended format:
 
 ```txt
 key value value value
 ```
 
-Exemplo:
+Example:
 
 ```txt
 goal reduceTokens keepMeaning
@@ -149,39 +149,39 @@ risk ambiguity
 next defineSpec createExamples
 ```
 
-A primeira palavra é a chave semântica. O restante da linha são valores relacionados.
+The first word is the semantic key. The rest of the line are related values.
 
 ---
 
-## 7. Separadores
+## 7. Separators
 
-Separador padrão:
+Default separator:
 
 ```txt
 space
 ```
 
-Preferir:
+Prefer:
 
 ```txt
 goal learnJava maven
 ```
 
-Evitar quando possível:
+Avoid when possible:
 
 ```txt
 GOAL=LEARN_JAVA+MAVEN
 ```
 
-Símbolos podem ser usados quando melhorarem muito a clareza, mas não devem ser o padrão.
+Symbols may be used when they greatly improve clarity, but should not be the default.
 
 ---
 
-## 8. Termos compostos
+## 8. Compound terms
 
-Usar `camelCase` para termos compostos.
+Use `camelCase` for compound terms.
 
-Preferir:
+Prefer:
 
 ```txt
 gameLibrary
@@ -190,7 +190,7 @@ testClasses
 projectCtx
 ```
 
-Evitar:
+Avoid:
 
 ```txt
 game_library
@@ -199,33 +199,33 @@ test_classes
 project_context
 ```
 
-Motivo: `_` pode quebrar a tokenização e aumentar custo.
+Reason: `_` can break tokenization and increase cost.
 
 ---
 
-## 9. Letras maiúsculas
+## 9. Uppercase letters
 
-Usar minúsculas por padrão.
+Use lowercase by default.
 
-Preferir:
+Prefer:
 
 ```txt
 project javaCrud state
 ```
 
-Evitar:
+Avoid:
 
 ```txt
 PROJECT JAVA_CRUD STATE
 ```
 
-Maiúsculas são permitidas para:
+Uppercase is allowed for:
 
-- nomes próprios;
-- siglas muito conhecidas;
-- tecnologias que normalmente usam maiúsculas.
+- proper nouns;
+- well-known acronyms;
+- technologies that conventionally use uppercase.
 
-Exemplos válidos:
+Valid examples:
 
 ```txt
 API
@@ -238,9 +238,9 @@ HTML
 
 ---
 
-## 10. Booleanos
+## 10. Booleans
 
-Valores booleanos oficiais:
+Official boolean values:
 
 ```txt
 y yes
@@ -248,7 +248,7 @@ n no
 maybe uncertain
 ```
 
-Uso:
+Usage:
 
 ```txt
 viable y
@@ -258,9 +258,9 @@ risk maybe
 
 ---
 
-## 11. Marcadores especiais
+## 11. Special markers
 
-Marcadores permitidos:
+Allowed markers:
 
 ```txt
 ? uncertain
@@ -269,7 +269,7 @@ Marcadores permitidos:
 - absentOrNegated
 ```
 
-Exemplo:
+Example:
 
 ```txt
 risk memoryFail?
@@ -278,20 +278,20 @@ time ~2h
 feature -auth
 ```
 
-Interpretação:
+Interpretation:
 
-- risco incerto de falha de memória;
-- prioridade alta;
-- tempo aproximado de 2 horas;
-- autenticação ausente ou negada.
+- uncertain risk of memory failure;
+- high priority;
+- approximately 2 hours;
+- authentication is absent or out of scope.
 
 ---
 
-## 12. Níveis de compressão
+## 12. Compression levels
 
-### L1 — legível
+### L1 — legible
 
-Mais confortável para humanos.
+More comfortable for humans.
 
 ```txt
 nmc1 project javaCrud state
@@ -300,9 +300,9 @@ app gameLibrary
 next createModel testClasses
 ```
 
-### L2 — padrão
+### L2 — standard
 
-Mais compacto, ainda seguro.
+More compact, still safe.
 
 ```txt
 nmc1 proj javaCrud state
@@ -311,9 +311,9 @@ app gameLibrary
 next model tests
 ```
 
-### L3 — comprimido com dicionário
+### L3 — dictionary-compressed (discouraged)
 
-Mais econômico, mas depende de dicionário.
+More economical, but depends on an external dictionary.
 
 ```txt
 n1 p javaCrud s
@@ -322,7 +322,7 @@ a gameLibrary
 nx model tests
 ```
 
-Dicionário necessário:
+Required dictionary:
 
 ```txt
 n1 nmc1
@@ -333,29 +333,37 @@ a app
 nx next
 ```
 
-Recomendação: usar L2 como padrão. Usar L3 apenas quando o dicionário estiver disponível no mesmo arquivo, em memória confiável ou em documento de referência.
+**Warning:** L3 contradicts the core principle (`meaning > consistency > tokenSaving > beauty`) when the dictionary is not adjacent to the block. Single-letter keys (`p`, `g`, `s`, `r`) are ambiguous to humans and can be tokenized unpredictably, erasing the expected savings.
+
+Rule:
+
+- **recommended default:** L2;
+- **use L3 only if:** the dictionary is embedded in the same file, immediately before or after the block;
+- **never use L3:** in critical decisions, contracts, public documentation, or contexts where the AI may read the block without the dictionary.
+
+If the dictionary cannot ride along, prefer L2.
 
 ---
 
-## 13. Regras de ambiguidade
+## 13. Ambiguity rules
 
-A NMC deve evitar compressão quando:
+NMC must avoid compression when:
 
-- houver termos parecidos;
-- a abreviação puder significar várias coisas;
-- uma decisão técnica puder ser interpretada errado;
-- o conteúdo for jurídico, financeiro, médico ou crítico;
-- o bloco for lido por humanos sem contexto.
+- similar-sounding terms exist;
+- an abbreviation could mean multiple things;
+- a technical decision could be misread;
+- the content is legal, financial, medical, or critical;
+- the block will be read by humans without context.
 
-Quando houver dúvida, usar palavra mais explícita.
+When in doubt, use the more explicit word.
 
-Exemplo melhor:
+Better:
 
 ```txt
 risk authTokenLeak
 ```
 
-Exemplo pior:
+Worse:
 
 ```txt
 r atl
@@ -363,21 +371,21 @@ r atl
 
 ---
 
-## 14. Versionamento
+## 14. Versioning
 
-A versão atual é:
+Current version:
 
 ```txt
 nmc1
 ```
 
-Mudanças incompatíveis devem criar nova versão:
+Breaking changes must create a new version:
 
 ```txt
 nmc2
 ```
 
-Mudanças compatíveis podem usar versão menor na documentação:
+Backward-compatible changes can use a minor version in documentation:
 
 ```txt
 nmc1 spec v0.2
@@ -385,17 +393,17 @@ nmc1 spec v0.2
 
 ---
 
-## 15. Regra de criação de novas chaves
+## 15. Rule for creating new keys
 
-Novas chaves devem ser:
+New keys must be:
 
-- curtas;
-- semânticas;
-- em minúsculas;
-- preferencialmente conhecidas em inglês técnico simples;
-- documentadas em `docs/dictionary.md`.
+- short;
+- semantic;
+- lowercase;
+- preferably common simple technical English;
+- documented in `docs/dictionary.md`.
 
-Exemplo bom:
+Good examples:
 
 ```txt
 risk
@@ -404,7 +412,7 @@ status
 reader
 ```
 
-Exemplo ruim:
+Bad examples:
 
 ```txt
 x1
@@ -415,22 +423,22 @@ veryImportantProjectThing
 
 ---
 
-## 16. Recomendação de uso
+## 16. Recommended usage
 
-Usar NMC para:
+Use NMC for:
 
 - `AI_CONTEXT.md`;
-- planos de implementação;
-- documentação compacta;
-- histórico de decisões;
-- notas de projeto;
-- estados de tarefas;
-- resumos técnicos reutilizáveis.
+- implementation plans;
+- compact documentation;
+- decision history;
+- project notes;
+- task states;
+- reusable technical summaries.
 
-Evitar NMC para:
+Avoid NMC for:
 
-- texto formal final;
-- documentação pública para usuários leigos;
-- contratos;
-- textos que exigem tom humano ou narrativo;
-- conteúdos onde ambiguidade pode causar dano.
+- final formal text;
+- public-facing documentation for non-technical readers;
+- contracts;
+- text that demands a human or narrative tone;
+- content where ambiguity can cause harm.

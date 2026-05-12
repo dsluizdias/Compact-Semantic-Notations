@@ -1,6 +1,6 @@
 # Decision Log — NMC Template
 
-Use este arquivo para registrar decisões técnicas de forma compacta.
+Use this file to record technical decisions compactly.
 
 ---
 

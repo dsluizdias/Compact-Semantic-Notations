@@ -1,17 +1,18 @@
-# NMC Tests — Testes de Compressão e Significado
+# NMC Tests — Compression and Meaning Tests
 
-Versão: `nmc1`  
+Version: `nmc1`
 Status: experimental
+(Portuguese version: [tests.pt-BR.md](tests.pt-BR.md))
 
-Este arquivo define uma forma simples de testar blocos escritos em **NMC — Notação Mnemônica Compacta**.
+This file defines a simple way to test blocks written in **NMC — Compact Mnemonic Notation**.
 
-O objetivo não é apenas reduzir tokens. O objetivo é reduzir tokens **sem perder significado importante**.
+The goal is not just to reduce tokens. The goal is to reduce tokens **without losing important meaning**.
 
 ---
 
-## 1. Critérios de validação
+## 1. Validation criteria
 
-Um bloco NMC deve passar por três testes:
+An NMC block must pass three tests:
 
 ```txt
 tokens lowerThan normalText
@@ -19,21 +20,21 @@ meaning preserved
 aiExpansion correct
 ```
 
-Ou seja:
+That is:
 
-1. a versão NMC deve ser menor que a versão normal;
-2. o significado principal deve ser preservado;
-3. uma IA deve conseguir expandir o bloco corretamente.
+1. the NMC version must be smaller than the normal version;
+2. the main meaning must be preserved;
+3. an AI must be able to expand the block correctly.
 
 ---
 
-## 2. Fórmula de economia
+## 2. Savings formula
 
 ```txt
 savingPercent = (1 - nmcTokens / normalTokens) * 100
 ```
 
-Exemplo:
+Example:
 
 ```txt
 normalTokens 100
@@ -41,39 +42,39 @@ nmcTokens 45
 savingPercent 55
 ```
 
-Interpretação: a NMC economizou 55% dos tokens em relação ao texto normal.
+Interpretation: NMC saved 55% of the tokens relative to normal text.
 
 ---
 
-## 3. Faixas de resultado
+## 3. Result bands
 
-| Economia | Resultado |
+| Saving | Result |
 |---|---|
-| `0-20%` | baixa |
-| `20-40%` | útil |
-| `40-70%` | boa |
-| `70-90%` | agressiva |
-| `90%+` | risco alto de perda de significado |
+| `0-20%` | low |
+| `20-40%` | useful |
+| `40-70%` | good |
+| `70-90%` | aggressive |
+| `90%+` | high risk of meaning loss |
 
-A meta recomendada para uso real é entre `40-70%`.
-
----
-
-## 4. Teste manual básico
-
-Para testar um bloco NMC:
-
-1. escrever o texto normal;
-2. medir tokens do texto normal;
-3. converter para NMC;
-4. medir tokens da NMC;
-5. pedir para uma IA expandir a NMC;
-6. comparar a expansão com o texto original;
-7. ajustar termos ambíguos.
+Recommended target for real use: between `40-70%`.
 
 ---
 
-## 5. Template de teste
+## 4. Basic manual test
+
+To test an NMC block:
+
+1. write the normal text;
+2. measure tokens of the normal text;
+3. convert to NMC;
+4. measure NMC tokens;
+5. ask an AI to expand the NMC;
+6. compare the expansion to the original;
+7. adjust ambiguous terms.
+
+---
+
+## 5. Test template
 
 ```txt
 case id
@@ -89,12 +90,12 @@ notes ""
 
 ---
 
-## 6. Caso de teste 001 — Java CRUD
+## 6. Test case 001 — Java CRUD
 
-Texto normal:
+Normal text:
 
 ```txt
-Este projeto é um CRUD em Java usando Maven. O objetivo é aprender Java, Maven e organização de código. A aplicação será uma biblioteca de jogos. Os próximos passos são criar os models e implementar testes.
+This project is a Java CRUD using Maven. The goal is to learn Java, Maven, and code organization. The application will be a game library. The next steps are to create the models and implement tests.
 ```
 
 NMC:
@@ -106,10 +107,10 @@ app gameLibrary
 next createModels implementTests
 ```
 
-Expansão esperada:
+Expected expansion:
 
 ```txt
-Este é o estado de um projeto Java CRUD. O objetivo é aprender Java, Maven e organização de código. A aplicação é uma biblioteca de jogos. Os próximos passos são criar os models e implementar testes.
+This is the state of a Java CRUD project. The goal is to learn Java, Maven, and code organization. The application is a game library. The next steps are to create the models and implement tests.
 ```
 
 Checklist:
@@ -122,12 +123,12 @@ risk low
 
 ---
 
-## 7. Caso de teste 002 — AI Context
+## 7. Test case 002 — AI Context
 
-Texto normal:
+Normal text:
 
 ```txt
-Quero criar um arquivo Markdown para guardar o contexto atual do projeto e reutilizar em novos chats com IA. O arquivo deve ser curto, atualizado e organizado por objetivo, estado atual, decisões, problemas e próximos passos.
+I want to create a Markdown file to store the current project context and reuse it in future AI chats. The file should be short, up to date, and organized by goal, current state, decisions, problems, and next steps.
 ```
 
 NMC:
@@ -142,10 +143,10 @@ sections goal state decisions problems next
 reader aiPrimary humanSecondary
 ```
 
-Expansão esperada:
+Expected expansion:
 
 ```txt
-Criar um arquivo Markdown para armazenar o contexto atual do projeto e reutilizá-lo em futuros chats com IA. O arquivo deve ser curto, atualizado e organizado em seções de objetivo, estado atual, decisões, problemas e próximos passos. A IA é o leitor principal e humanos são leitores secundários.
+Create a Markdown file to store the current project context and reuse it in future AI chats. The file should be short, up to date, and organized into sections for goal, current state, decisions, problems, and next steps. AI is the primary reader; humans are secondary.
 ```
 
 Checklist:
@@ -158,9 +159,9 @@ risk low
 
 ---
 
-## 8. Caso de teste 003 — Compressão agressiva
+## 8. Test case 003 — Aggressive compression
 
-NMC agressiva:
+Aggressive NMC:
 
 ```txt
 n1 p jc s
@@ -169,7 +170,7 @@ a gl
 nx cm tc
 ```
 
-Possível problema:
+Likely problems:
 
 ```txt
 jc ambiguous
@@ -179,7 +180,7 @@ cm ambiguous
 tc ambiguous
 ```
 
-Resultado esperado:
+Expected result:
 
 ```txt
 meaningPreserved maybe
@@ -187,7 +188,7 @@ aiExpansionCorrect maybe
 risk high
 ```
 
-Correção recomendada:
+Recommended fix:
 
 ```txt
 n1 p javaCrud s
@@ -198,41 +199,50 @@ nx createModel testClasses
 
 ---
 
-## 9. Critérios de falha
+## 9. Failure criteria
 
-Um bloco NMC falha se:
+An NMC block fails if:
 
-- a IA expandir com significado diferente;
-- uma abreviação essencial for ambígua;
-- a economia for pequena demais para justificar a perda de clareza;
-- a versão NMC exigir um dicionário que não está disponível;
-- o conteúdo crítico ficar aberto a múltiplas interpretações.
+- the AI expands it with a different meaning;
+- a critical abbreviation is ambiguous;
+- the savings are too small to justify the loss of clarity;
+- the NMC version requires a dictionary that is not available;
+- critical content is open to multiple interpretations.
 
 ---
 
-## 10. Registro de testes
+## 10. Test record
 
-Use esta tabela para registrar resultados reais.
+To populate this table with real numbers, run:
 
-| Caso | Normal tokens | NMC tokens | Economia | Significado preservado | Expansão correta | Notas |
+```bash
+python3 tools/measure_tokens.py --encoding cl100k_base
+python3 tools/measure_tokens.py --encoding o200k_base
+```
+
+Requires `tiktoken` (`pip install tiktoken` or, on Arch/CachyOS, `sudo pacman -S python-tiktoken`).
+
+| Case | Normal tokens | NMC tokens | Saving | Meaning preserved | Expansion correct | Notes |
 |---|---:|---:|---:|---|---|---|
-| 001 javaCrud | TBD | TBD | TBD | y | y | medir com tokenizer escolhido |
-| 002 aiContext | TBD | TBD | TBD | y | y | medir com tokenizer escolhido |
-| 003 aggressive | TBD | TBD | TBD | maybe | maybe | compressão perigosa |
+| 001 javaCrud | TBD | TBD | TBD | y | y | run `tools/measure_tokens.py` |
+| 002 aiContext | TBD | TBD | TBD | y | y | run `tools/measure_tokens.py` |
+| 003 aggressive | TBD | TBD | TBD | maybe | maybe | dangerous compression, see §8 |
+
+Record results per tokenizer (cl100k_base ≈ GPT-4 / 3.5; o200k_base ≈ GPT-4o; Claude tokenizers may differ).
 
 ---
 
-## 11. Observação sobre tokenizers
+## 11. Note on tokenizers
 
-Contagens de tokens podem variar entre modelos e ferramentas.
+Token counts vary between models and tools.
 
-A NMC deve ser testada com o tokenizer mais próximo do modelo-alvo sempre que possível.
+NMC should be tested with the tokenizer closest to the target model whenever possible.
 
-Regra prática:
+Practical rule:
 
 ```txt
 optimizeFor targetModel
 avoid assuming charCount equals tokenCount
 ```
 
-Menos caracteres nem sempre significa menos tokens, mas reduzir palavras redundantes, símbolos desnecessários e repetições geralmente ajuda.
+Fewer characters does not always mean fewer tokens, but reducing redundant words, unnecessary symbols, and repetitions usually helps.

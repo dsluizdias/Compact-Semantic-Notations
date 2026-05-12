@@ -17,4 +17,4 @@ next createModel testClasses
 
 ## Expansion
 
-Escreva aqui a expansão esperada em texto normal para validar se a NMC preservou significado.
+Write the expected expansion in normal text here to validate that NMC preserved the meaning.

@@ -1,107 +1,121 @@
-# NMC Dictionary — Dicionário Oficial
+# NMC Dictionary — Official Dictionary
 
-Versão: `nmc1`  
+Version: `nmc1`
 Status: experimental
+(Portuguese version: [dictionary.pt-BR.md](dictionary.pt-BR.md))
 
-Este arquivo define o vocabulário base da **NMC — Notação Mnemônica Compacta**.
+This file defines the base vocabulary of **NMC — Compact Mnemonic Notation**.
 
-O objetivo do dicionário é manter consistência entre diferentes blocos NMC, reduzindo ambiguidade e facilitando expansão por IAs.
+The dictionary keeps consistency across NMC blocks, reduces ambiguity, and helps AIs expand blocks correctly.
 
 ---
 
-## 1. Chaves principais
+## 1. Main keys
 
-| Chave | Significado | Uso recomendado |
+| Key | Meaning | Recommended use |
 |---|---|---|
-| `goal` | objetivo | propósito do bloco, projeto ou tarefa |
-| `use` | uso | onde ou como algo será usado |
-| `ctx` | contexto | contexto geral |
-| `state` | estado atual | situação atual de algo |
-| `dec` | decisão | decisão tomada |
-| `prob` | problema | problema conhecido |
-| `next` | próximo passo | ações seguintes |
-| `rule` | regra | regra fixa ou orientação |
-| `req` | requisito | requisito obrigatório |
-| `risk` | risco | risco, perigo ou ponto de atenção |
-| `why` | motivo | justificativa |
-| `out` | saída esperada | resultado desejado |
-| `format` | formato | formato de entrega ou armazenamento |
-| `limit` | limite | restrição ou limite |
-| `prio` | prioridade | importância relativa |
-| `status` | estado de execução | progresso atual |
-| `src` | fonte | origem da informação |
-| `note` | observação | nota adicional |
-| `reader` | leitor esperado | humano, IA ou ambos |
-| `owner` | responsável | pessoa, IA ou módulo responsável |
-| `scope` | escopo | limite funcional ou conceitual |
-| `dep` | dependência | requisito externo ou interno |
-| `input` | entrada | dados de entrada |
-| `output` | saída | dados de saída |
-| `flow` | fluxo | sequência de funcionamento |
-| `test` | teste | validação esperada |
-| `metric` | métrica | forma de medir resultado |
-| `example` | exemplo | exemplo de uso |
+| `goal` | goal | purpose of the block, project, or task |
+| `use` | use | where or how something will be used |
+| `ctx` | context | general context |
+| `state` | current state | current situation of something |
+| `dec` | decision | decision taken |
+| `prob` | problem | known problem |
+| `next` | next step | following actions |
+| `rule` | rule | fixed rule or guideline |
+| `req` | requirement | mandatory requirement |
+| `risk` | risk | risk, danger, or warning |
+| `why` | reason | justification |
+| `out` | expected output | desired result |
+| `format` | format | delivery or storage format |
+| `limit` | limit | restriction or limit |
+| `prio` | priority | relative importance |
+| `status` | execution state | current progress |
+| `src` | source | origin of the information |
+| `note` | note | additional note |
+| `reader` | expected reader | human, AI, or both |
+| `owner` | owner | person, AI, or module in charge |
+| `scope` | scope | functional or conceptual boundary |
+| `dep` | dependency | external or internal requirement |
+| `input` | input | input data |
+| `output` | output | output data |
+| `flow` | flow | sequence of operation |
+| `test` | test | expected validation |
+| `metric` | metric | way of measuring result |
+| `example` | example | usage example |
 
 ---
 
-## 2. Domínios comuns
+## 2. Common domains
 
-| Termo | Significado |
+| Term | Meaning |
 |---|---|
-| `project` | projeto |
-| `doc` | documentação |
-| `task` | tarefa |
-| `study` | estudo |
+| `project` | project |
+| `doc` | documentation |
+| `task` | task |
+| `study` | study |
 | `prompt` | prompt |
-| `system` | sistema |
-| `repo` | repositório |
+| `system` | system |
+| `repo` | repository |
 | `api` | API |
-| `db` | banco de dados |
-| `ui` | interface de usuário |
-| `cli` | interface de linha de comando |
-| `desktop` | aplicação desktop |
-| `web` | aplicação web |
-| `backend` | camada backend |
-| `frontend` | camada frontend |
-| `infra` | infraestrutura |
+| `db` | database |
+| `ui` | user interface |
+| `cli` | command-line interface |
+| `desktop` | desktop application |
+| `web` | web application |
+| `backend` | backend layer |
+| `frontend` | frontend layer |
+| `infra` | infrastructure |
 
 ---
 
-## 3. Tipos de bloco
+## 3. Block types
 
-| Tipo | Significado |
+| Type | Meaning |
 |---|---|
-| `state` | estado atual |
-| `plan` | plano |
-| `spec` | especificação |
-| `decision` | decisão registrada |
-| `roadmap` | mapa de evolução |
-| `summary` | resumo |
-| `context` | contexto reutilizável |
-| `bug` | bug ou problema técnico |
-| `idea` | ideia inicial |
-| `rules` | regras |
-| `test` | teste ou validação |
-| `template` | modelo reutilizável |
+| `state` | current state |
+| `plan` | plan |
+| `spec` | specification |
+| `decision` | recorded decision |
+| `prob` | known problem |
+| `roadmap` | evolution map |
+| `summary` | summary |
+| `context` | reusable context |
+| `bug` | specific technical defect |
+| `idea` | initial idea |
+| `rules` | rules |
+| `test` | test or validation |
+| `template` | reusable template |
+
+Naming convention:
+
+- block types and content keys may overlap (e.g., `decision`/`dec`, `prob`/`prob`);
+- the type appears **once** per block, in the header — prefer the legible form (`decision`);
+- content keys repeat — prefer the compact form (`dec`, `req`, `rs`);
+- position disambiguates: 4th word of the header = type; 1st word of a content line = key.
+
+`prob` vs `bug`:
+
+- `prob` = general problem (scope, process, missing requirement);
+- `bug` = reproducible technical defect in code.
 
 ---
 
 ## 4. Status
 
-| Valor | Significado |
+| Value | Meaning |
 |---|---|
-| `todo` | ainda não iniciado |
-| `wip` | em andamento |
-| `done` | concluído |
-| `blocked` | bloqueado |
-| `paused` | pausado |
-| `dropped` | descartado |
-| `review` | precisa de revisão |
-| `draft` | rascunho |
-| `stable` | estável |
+| `todo` | not yet started |
+| `wip` | in progress |
+| `done` | completed |
+| `blocked` | blocked |
+| `paused` | paused |
+| `dropped` | dropped |
+| `review` | needs review |
+| `draft` | draft |
+| `stable` | stable |
 | `experimental` | experimental |
 
-Exemplo:
+Example:
 
 ```txt
 status wip
@@ -109,16 +123,16 @@ status wip
 
 ---
 
-## 5. Prioridade
+## 5. Priority
 
-| Valor | Significado |
+| Value | Meaning |
 |---|---|
-| `low` | baixa |
-| `med` | média |
-| `high` | alta |
-| `critical` | crítica |
+| `low` | low |
+| `med` | medium |
+| `high` | high |
+| `critical` | critical |
 
-Exemplo:
+Example:
 
 ```txt
 prio high
@@ -126,15 +140,15 @@ prio high
 
 ---
 
-## 6. Booleanos
+## 6. Booleans
 
-| Valor | Significado |
+| Value | Meaning |
 |---|---|
-| `y` | sim |
-| `n` | não |
-| `maybe` | incerto |
+| `y` | yes |
+| `n` | no |
+| `maybe` | uncertain |
 
-Exemplo:
+Example:
 
 ```txt
 viable y
@@ -144,28 +158,28 @@ risk maybe
 
 ---
 
-## 7. Marcadores especiais
+## 7. Special markers
 
-| Marcador | Significado | Exemplo |
+| Marker | Meaning | Example |
 |---|---|---|
-| `?` | incerteza | `risk memoryFail?` |
-| `!` | importante | `prio high!` |
-| `~` | aproximação | `time ~2h` |
-| `-` | ausência ou negação | `feature -auth` |
+| `?` | uncertainty | `risk memoryFail?` |
+| `!` | important | `prio high!` |
+| `~` | approximation | `time ~2h` |
+| `-` | absence or negation | `feature -auth` |
 
 ---
 
-## 8. Leitores
+## 8. Readers
 
-| Valor | Significado |
+| Value | Meaning |
 |---|---|
-| `aiPrimary` | IA é o leitor principal |
-| `humanPrimary` | humano é o leitor principal |
-| `both` | ambos são leitores importantes |
-| `humanSecondary` | humano é leitor secundário |
-| `aiSecondary` | IA é leitor secundário |
+| `aiPrimary` | AI is the primary reader |
+| `humanPrimary` | human is the primary reader |
+| `both` | both are important readers |
+| `humanSecondary` | human is secondary reader |
+| `aiSecondary` | AI is secondary reader |
 
-Exemplo:
+Example:
 
 ```txt
 reader aiPrimary humanSecondary
@@ -173,11 +187,11 @@ reader aiPrimary humanSecondary
 
 ---
 
-## 9. Chaves compactas para L3
+## 9. Compact keys for L3 (discouraged)
 
-O nível L3 só deve ser usado quando este dicionário estiver disponível.
+L3 should only be used when this dictionary is embedded in the same file as the block. Without that, single-letter keys are ambiguous and can erase the token savings. See `spec.md` §12 for the detailed rules.
 
-| Curta | Expansão |
+| Short | Expansion |
 |---|---|
 | `n1` | `nmc1` |
 | `p` | `project` |
@@ -204,7 +218,7 @@ O nível L3 só deve ser usado quando este dicionário estiver disponível.
 | `nt` | `note` |
 | `rd` | `reader` |
 
-Exemplo L3:
+L3 example:
 
 ```txt
 n1 p javaCrud s
@@ -215,18 +229,18 @@ nx model tests
 
 ---
 
-## 10. Regras para novos termos
+## 10. Rules for new terms
 
-Ao criar uma nova chave ou valor:
+When creating a new key or value:
 
-1. preferir inglês técnico simples;
-2. evitar siglas obscuras;
-3. usar minúsculas;
-4. usar camelCase para termos compostos;
-5. documentar neste arquivo;
-6. testar se a IA consegue expandir corretamente.
+1. prefer simple technical English;
+2. avoid obscure acronyms;
+3. use lowercase;
+4. use camelCase for compound terms;
+5. document the term in this file;
+6. test whether an AI can expand it correctly.
 
-Exemplo bom:
+Good examples:
 
 ```txt
 pluginSchema
@@ -234,7 +248,7 @@ storageModel
 errorHandling
 ```
 
-Exemplo ruim:
+Bad examples:
 
 ```txt
 ps1
