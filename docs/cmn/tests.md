@@ -226,10 +226,9 @@ Requires `tiktoken` (`pip install tiktoken` or, on Arch/CachyOS, `sudo pacman -S
 |---|---:|---:|---:|---|---|---|
 | 001 javaCrud (EN, L1) | 42 | 25 | 40% | y | y | token-calculator.net (GPT BPE) |
 | 001 javaCrud (EN, L2) | 42 | 23 | 45% | y | y | best level for this case |
-| 001 javaCrud (EN, L3) | 42 | 24 | 43% | maybe | maybe | loses to L2 — see §12.3 |
 | 001 javaCrud (PT-BR, L1) | 50 | 25 | 50% | y | y | CMN keys are English by spec |
 | 002 aiContext (EN, L1) | 47 | 39 | 17% | y | y | compound keys hurt — see findings |
-| 003 aggressive | TBD | TBD | TBD | maybe | maybe | dangerous compression, see §8 |
+| 003 over-abbreviation (historical) | 42 | 24 | 43% | maybe | maybe | retired draft L3 form; kept as a cautionary measurement, see §8 |
 
 Record results per tokenizer (cl100k_base ≈ GPT-4 / 3.5; o200k_base ≈ GPT-4o; Claude tokenizers may differ).
 
@@ -242,13 +241,12 @@ Record results per tokenizer (cl100k_base ≈ GPT-4 / 3.5; o200k_base ≈ GPT-4o
 | "avoid" form (uppercase + `\|`, `=`, `_`, `+`) | 36 | -14% |
 | CMN L1 | 25 | -40% |
 | **CMN L2** | **23** | **-45% (winner)** |
-| CMN L3 | 24 | -43% |
+| over-abbreviation (historical L3 form) | 24 | -43% (worse than L2) |
 
 Findings:
 
 - **Saving% varies widely by content.** Case 001 (jargon-heavy: `javaCrud`, `learnJava`, `maven`) gave 45%. Case 002 (descriptive prose with compound concepts: `storeProjectCtx`, `aiPrimary`, `humanSecondary`) gave only 17%. The spec's §3 "good 40-70%" band reflects best-case jargon-heavy blocks, not typical descriptive ones. CMN compresses *dense terminology* well and *plain English* poorly, because BPE already encodes function words (`the`, `to`, `a`, `in`) as 1 token each — there's little left to save.
-- **CMN L2 is the empirical winner** for case 001. It beats L1 by 2 tokens and L3 by 1 token, while staying readable.
-- **L3 is dominated.** It sits between L1 and L2 — saves 1 token over L1 (`c1` vs `cmn1`) but loses 1 to L2. There's no block where L3 wins on tokens *and* on legibility. Recommend cutting L3 from spec v2 unless larger-block measurements rescue it.
+- **CMN L2 is the empirical winner** for case 001. It beats L1 by 2 tokens and the retired L3 form by 1 token, while staying readable. (An earlier draft of this spec defined an L3 dictionary-compressed level; it was removed because measurements showed it sat between L1 and L2 on tokens while making the block harder to read. See [spec.md §12](spec.md#12-compression-levels).)
 - **PT-BR users save more in absolute terms** (~50% vs EN's ~45%) because PT-BR words split worse: `aplicação` → `aplic` + `ação`, `próximos` → `pró` + `x` + `imos`.
 - `cmn1` itself tokenizes as `cm` + `n` + `1` = 3 tokens — every block pays this header tax.
 - camelCase identifiers split across subwords (`javaCrud` → `java` + `Crud`). See [spec.md §8](spec.md#8-compound-terms).

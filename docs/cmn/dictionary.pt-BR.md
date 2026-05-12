@@ -210,49 +210,7 @@ reader aiPrimary humanSecondary
 
 ---
 
-## 9. Chaves compactas para L3 (uso desencorajado)
-
-O nível L3 só deve ser usado quando este dicionário estiver embutido no mesmo arquivo do bloco. Sem isso, chaves de uma letra são ambíguas e podem anular a economia de tokens. Ver `spec.md` §12 para regras detalhadas.
-
-| Curta | Expansão |
-|---|---|
-| `n1` | `nmc1` |
-| `p` | `project` |
-| `d` | `doc` |
-| `t` | `task` |
-| `s` | `state` |
-| `pl` | `plan` |
-| `sp` | `spec` |
-| `ctx` | `context` |
-| `g` | `goal` |
-| `u` | `use` |
-| `dc` | `dec` |
-| `pb` | `prob` |
-| `nx` | `next` |
-| `r` | `rule` |
-| `rq` | `req` |
-| `rs` | `risk` |
-| `w` | `why` |
-| `o` | `out` |
-| `f` | `format` |
-| `l` | `limit` |
-| `pr` | `prio` |
-| `st` | `status` |
-| `nt` | `note` |
-| `rd` | `reader` |
-
-Exemplo L3:
-
-```txt
-n1 p javaCrud s
-g learnJava maven
-a gameLibrary
-nx model tests
-```
-
----
-
-## 10. Regras para novos termos
+## 9. Regras para novos termos
 
 Ao criar uma nova chave ou valor:
 

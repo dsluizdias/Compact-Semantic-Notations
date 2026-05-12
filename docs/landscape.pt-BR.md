@@ -55,7 +55,7 @@ risk med
 useCase recurringContext knownPatterns
 avoidWhen noSharedConvention
 status researchDirection
-note approximatesNmcL3
+note exploresHeavyCompressionBand
 
 notation nhc
 name notacaoHibridaCodificada
@@ -68,7 +68,7 @@ risk med
 useCase repeatedAiReading withDict
 avoidWhen dictionaryUnavailable
 status researchDirection
-note overlapsNmcL3
+note exploresHeavyCompressionBand
 
 notation nnv
 name notacaoNumericaVersionada
@@ -103,7 +103,6 @@ status researchDirection
 nmc1 prompt notationSelection rules
 if needHumanReadable use tec
 if needBestBalance use nmc
-if needMoreCompression use nmcL3 withInlineDict
 if researchingExtremeCompression explore nnv ndc
 principle meaning > consistency > tokenSaving > beauty
 ```
@@ -114,8 +113,8 @@ A ordenação `>` do princípio é fundamental: quando duas opções empatam em 
 
 ## Por que não shipar `nam`, `nhc`, `nnv`, `ndc` como irmãs da NMC
 
-1. **`nam` e `nhc` se sobrepõem ao L3 da NMC.** A NMC já cobre a faixa comprimida por dicionário em [cmn/spec.pt-BR.md §12](cmn/spec.pt-BR.md). Adicionar protocolos irmãos multiplica a superfície de manutenção.
-2. **`nnv` e `ndc` ainda não foram medidos.** A própria tabela de economia da NMC ([cmn/tests.pt-BR.md §10](cmn/tests.pt-BR.md)) ainda está TBD. Shipar protocolos mais agressivos antes de validar o moderado é prematuro.
+1. **Nenhuma foi medida.** A própria NMC só tem dois casos medidos em [cmn/tests.pt-BR.md §10](cmn/tests.pt-BR.md), e mostram economia variando bastante (17% a 50%) conforme o conteúdo. Shipar protocolos mais agressivos antes de validar a moderada em mais casos é prematuro.
+2. **A faixa de compressão pesada não rendeu empiricamente.** Um rascunho anterior da NMC incluía um nível L3 comprimido por dicionário; a medição mostrou que era dominado por L2 (pagava ambiguidade sem entregar economia), e L3 foi removido. `nam` e `nhc` ocupam a mesma faixa que L3 ocupava. A menos que demonstrem ganhos claros sobre L2 num bloco real, herdam o mesmo defeito.
 3. **O custo de adoção se acumula.** Cada notação nova significa outro dicionário, outro contrato de leitura, outro conjunto de casos extremos. Seis notações × seis audiências = uma carga de manutenção que esmaga um projeto individual.
 
 Trate este arquivo como um roadmap, não como um catálogo de produtos prontos.

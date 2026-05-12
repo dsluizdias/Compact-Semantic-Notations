@@ -13,8 +13,8 @@ It is a structured writing style focused on reducing token usage while preservin
 |---|---|---|
 | CST | recommended | Compact Structured Text — closest to human prose |
 | **CMN** | recommended | **Main notation of this repo** — semantic key/value blocks |
-| MAN | research direction | Mnemonic Abbreviation Notation; overlaps with CMN L3 |
-| HCN | research direction | Hybrid Coded Notation; overlaps with CMN L3 |
+| MAN | research direction | Mnemonic Abbreviation Notation; heavy-compression band |
+| HCN | research direction | Hybrid Coded Notation; dictionary-compressed band |
 | VNN | research direction | Versioned Numeric Notation |
 | DCN | research direction | Dense Coded Notation; benchmarks only |
 

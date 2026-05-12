@@ -103,9 +103,9 @@ CMN saves tokens by trading full sentences for short semantic blocks.
 
 ## MAN — Mnemonic Abbreviation Notation (research direction)
 
-MAN is a more compressed version of CMN. It approximates CMN's own L3 level.
+MAN is a more compressed version of CMN. It explores the heavy-compression band that a removed L3 draft also occupied — replacing words with semantic abbreviations.
 
-It uses semantic abbreviations. Words still hint at meaning but are shorter.
+Words still hint at meaning but are shorter.
 
 **Example:**
 
@@ -127,20 +127,20 @@ nx means next
 keeps humanHints
 reduces longWords
 status researchDirection
-overlapsWith cmnL3
+note heavyCompressionBand
 ```
 
 **Interpretation:** `javaCrud` project in current state; goal learn Java and Maven; application game library; next steps model and tests.
 
 MAN saves more tokens than CMN but requires the reader to understand the abbreviations.
 
-**Use MAN only if** empirical numbers justify the cost of maintaining a separate protocol from CMN L3. Until then, prefer CMN L3 with the dictionary embedded.
+**Use MAN only if** empirical numbers justify the maintenance cost of a separate protocol. CMN's removed L3 draft tested this exact band and failed to beat L2 — MAN inherits that risk and would need to clear a higher bar.
 
 ---
 
 ## HCN — Hybrid Coded Notation (research direction)
 
-HCN mixes semantic words with short codes defined in a dictionary. It directly overlaps with CMN's L3.
+HCN mixes semantic words with short codes defined in a dictionary. It explores the same dictionary-compressed band that a removed L3 draft of CMN occupied.
 
 It replaces highly repeated terms with codes while keeping some words legible.
 
@@ -174,14 +174,14 @@ uses codes forRepeatedTerms
 requires partialDictionary
 bestFor repeatedContext
 status researchDirection
-overlapsWith cmnL3
+note dictionaryCompressionBand
 ```
 
 **Interpretation:** `project javaCrud state`; `goal learnJava maven`; `app gameLibrary`; `next model tests`.
 
 HCN saves more than CMN and MAN but depends on a dictionary.
 
-**Use HCN only if** measurements show real gains over CMN L3 with an embedded dictionary.
+**Use HCN only if** measurements show real gains over canonical CMN L2 — the removed L3 draft sat in this same band and lost to L2 on tokens.
 
 ---
 
@@ -300,7 +300,6 @@ status researchDirection
 cmn1 prompt notationSelection rules
 if needHumanReadable use cst
 if needBestBalance use cmn
-if needMoreCompression use cmnL3 withInlineDict
 if researchingExtremeCompression explore vnn dcn
 principle meaning > consistency > tokenSaving > beauty
 ```

@@ -337,9 +337,9 @@ app gameLibrary
 next createModel testClasses
 ```
 
-### L2 — standard
+### L2 — standard (recommended default)
 
-More compact, still safe.
+More compact, still safe — and the empirical winner at small block sizes.
 
 ```txt
 cmn1 proj javaCrud state
@@ -348,39 +348,7 @@ app gameLibrary
 next model tests
 ```
 
-### L3 — dictionary-compressed (discouraged)
-
-More economical, but depends on an external dictionary.
-
-```txt
-c1 p javaCrud s
-g learnJava maven
-a gameLibrary
-nx model tests
-```
-
-Required dictionary:
-
-```txt
-c1 cmn1
-p project
-s state
-g goal
-a app
-nx next
-```
-
-**Warning:** L3 contradicts the core principle (`meaning > consistency > tokenSaving > beauty`) when the dictionary is not adjacent to the block. Single-letter keys (`p`, `g`, `s`, `r`) are ambiguous to humans and can be tokenized unpredictably, erasing the expected savings.
-
-**Measured (case 001, GPT BPE):** L1 = 25 tok, **L2 = 23 tok**, L3 = 24 tok. L3 is dominated — it loses to L2 on tokens *and* on legibility, while only beating L1 by 1 token. The single-letter keys (`g`, `a`, `nx`, `p`, `s`) tokenize as 1 token each, but `goal`, `app`, `next`, `project`, `state` were already 1 token each in BPE, so the substitution buys nothing on the keys; the only real win is `c1` (2 tok) vs `cmn1` (3 tok). **L3 is a candidate for removal in spec v2** unless measurements at larger block sizes change the picture.
-
-Rule:
-
-- **recommended default:** L2;
-- **use L3 only if:** the dictionary is embedded in the same file, immediately before or after the block;
-- **never use L3:** in critical decisions, contracts, public documentation, or contexts where the AI may read the block without the dictionary.
-
-If the dictionary cannot ride along, prefer L2.
+**Removed in this version:** an earlier draft defined an L3 dictionary-compressed level (`c1 p javaCrud s`, etc.). Measurement showed L3 sat *between* L1 and L2 on tokens (case 001 GPT BPE: L1 = 25, L2 = 23, L3 = 24) — single-letter keys saved nothing because `goal`/`app`/`next`/`project`/`state` were already 1 token each in BPE. L3 cost ambiguity without paying token savings, so it has been dropped from the spec. The cautionary "over-abbreviation" pattern survives in [§13](#13-ambiguity-rules) and [examples.md §12](examples.md).
 
 ---
 

@@ -23,22 +23,13 @@ app gameLibrary
 next createModels implementTests
 ```
 
-NMC L2:
+NMC L2 (padrão recomendado):
 
 ```txt
 nmc1 proj javaCrud state
 goal learnJava maven codeOrg
 app gameLibrary
 next models tests
-```
-
-NMC L3:
-
-```txt
-n1 p javaCrud s
-g learnJava maven codeOrg
-a gameLibrary
-nx models tests
 ```
 
 ---
@@ -229,26 +220,26 @@ Expansão esperada:
 
 ---
 
-## 12. Exemplo ruim
+## 12. Exemplo ruim (abreviação excessiva)
 
 ```txt
-n1 p jc s
+nmc1 p jc s
 g lj mv
 a gl
 nx cm tc
 ```
 
-Problema:
+Problemas:
 
-- depende demais de dicionário;
-- `jc`, `lj`, `mv`, `gl`, `cm` e `tc` são ambíguos;
+- `jc`, `lj`, `mv`, `gl`, `cm` e `tc` são ambíguos: `jc` poderia ser `javaCrud` ou `jUnitConfig`; `mv` poderia ser `maven` ou `move`;
+- chaves de uma letra (`p`, `s`, `g`, `a`) não economizam nada em tokenizers BPE — `project`, `state`, `goal`, `app` já eram 1 token cada;
 - humanos e IAs podem interpretar errado.
 
-Versão melhor:
+Versão melhor (L2 canônico):
 
 ```txt
-n1 p javaCrud s
-g learnJava maven
-a gameLibrary
-nx createModel testClasses
+nmc1 proj javaCrud state
+goal learnJava maven
+app gameLibrary
+next createModel testClasses
 ```

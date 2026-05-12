@@ -337,9 +337,9 @@ app gameLibrary
 next createModel testClasses
 ```
 
-### L2 — padrão
+### L2 — padrão (recomendado)
 
-Mais compacto, ainda seguro.
+Mais compacto, ainda seguro — e o vencedor empírico em blocos pequenos.
 
 ```txt
 nmc1 proj javaCrud state
@@ -348,39 +348,7 @@ app gameLibrary
 next model tests
 ```
 
-### L3 — comprimido com dicionário (desencorajado)
-
-Mais econômico, mas depende de dicionário externo.
-
-```txt
-n1 p javaCrud s
-g learnJava maven
-a gameLibrary
-nx model tests
-```
-
-Dicionário necessário:
-
-```txt
-n1 nmc1
-p project
-s state
-g goal
-a app
-nx next
-```
-
-**Atenção:** L3 contradiz o princípio central (`meaning > consistency > tokenSaving > beauty`) quando o dicionário não está colado ao bloco. Chaves de uma letra (`p`, `g`, `s`, `r`) são ambíguas para humanos e podem ser tokenizadas de forma imprevisível, anulando a economia esperada.
-
-**Medido (caso 001, BPE GPT):** L1 = 25 tok, **L2 = 23 tok**, L3 = 24 tok. L3 é dominado — perde para L2 em tokens *e* em legibilidade, e só ganha de L1 por 1 token. As chaves de uma letra (`g`, `a`, `nx`, `p`, `s`) tokenizam como 1 token cada, mas `goal`, `app`, `next`, `project`, `state` já eram 1 token cada em BPE, então a substituição não economiza nas chaves; o único ganho real é `c1` (2 tok) vs `cmn1` (3 tok). **L3 é candidato a remoção na spec v2** a menos que medições em blocos maiores mudem o quadro.
-
-Regra:
-
-- **padrão recomendado:** L2;
-- **usar L3 apenas se:** o dicionário estiver embutido no mesmo arquivo, imediatamente antes ou depois do bloco;
-- **nunca usar L3:** em decisões críticas, contratos, documentação pública ou contextos onde a IA pode ler o bloco sem o dicionário.
-
-Se o dicionário não cabe junto, prefira L2.
+**Removido nesta versão:** um rascunho anterior definia um nível L3 comprimido por dicionário (`n1 p javaCrud s`, etc.). A medição mostrou que L3 ficava *entre* L1 e L2 em tokens (caso 001 BPE GPT: L1 = 25, L2 = 23, L3 = 24) — chaves de uma letra não economizam nada porque `goal`/`app`/`next`/`project`/`state` já eram 1 token cada em BPE. L3 pagava ambiguidade sem entregar economia, então foi removido da spec. O padrão "abreviação excessiva" como aviso ainda existe em [§13](#13-regras-de-ambiguidade) e [examples.pt-BR.md §12](examples.pt-BR.md).
 
 ---
 

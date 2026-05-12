@@ -55,7 +55,7 @@ risk med
 useCase recurringContext knownPatterns
 avoidWhen noSharedConvention
 status researchDirection
-note approximatesCmnL3
+note exploresHeavyCompressionBand
 
 notation hcn
 name hybridCodedNotation
@@ -68,7 +68,7 @@ risk med
 useCase repeatedAiReading withDict
 avoidWhen dictionaryUnavailable
 status researchDirection
-note overlapsCmnL3
+note exploresHeavyCompressionBand
 
 notation vnn
 name versionedNumericNotation
@@ -103,7 +103,6 @@ status researchDirection
 cmn1 prompt notationSelection rules
 if needHumanReadable use cst
 if needBestBalance use cmn
-if needMoreCompression use cmnL3 withInlineDict
 if researchingExtremeCompression explore vnn dcn
 principle meaning > consistency > tokenSaving > beauty
 ```
@@ -114,8 +113,8 @@ The principle's `>` ordering is load-bearing: when two options tie on tokens, th
 
 ## Why not ship `man`, `hcn`, `vnn`, `dcn` as siblings of CMN
 
-1. **`man` and `hcn` overlap with CMN L3.** CMN already covers the dictionary-compressed band via [cmn/spec.md §12](cmn/spec.md). Adding sibling protocols multiplies the surface area you maintain.
-2. **`vnn` and `dcn` are unmeasured.** CMN's own savings table ([cmn/tests.md §10](cmn/tests.md)) is still TBD. Shipping more aggressive protocols before validating the moderate one is premature.
+1. **None of them are measured.** CMN itself has only two measured cases in [cmn/tests.md §10](cmn/tests.md), and they show saving% varies widely (17% to 50%) by content. Shipping more aggressive protocols before validating the moderate one across more cases is premature.
+2. **The heavy-compression band is empirically underwhelming.** An earlier draft of CMN included an L3 dictionary-compressed level; measurement showed it was dominated by L2 (it cost ambiguity without paying token savings), so L3 was removed. `man` and `hcn` occupy the same band L3 did. Unless they can demonstrate clear wins over L2 on a real block, they have the same flaw built in.
 3. **Adoption cost compounds.** Each new notation means another dictionary, another reading contract, another set of edge cases. Six notations × six audiences = a maintenance burden that crushes a one-person project.
 
 Treat this file as a roadmap, not a catalog of shipping products.

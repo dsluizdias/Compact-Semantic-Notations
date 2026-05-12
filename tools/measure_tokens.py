@@ -62,14 +62,17 @@ CASES: list[Case] = [
         ),
     ),
     Case(
-        name="003 aggressive (L3 risky)",
+        # Historical cautionary case from a removed L3 draft.
+        # Demonstrates that over-abbreviation costs ambiguity without paying
+        # token savings. Kept as a control case for the §13 ambiguity rules.
+        name="003 over-abbreviation (cautionary)",
         normal=(
             "Este projeto é um CRUD em Java usando Maven. O objetivo é aprender "
             "Java e Maven. A aplicação será uma biblioteca de jogos. Os próximos "
             "passos são criar o model e as classes de teste."
         ),
         cmn=(
-            "c1 p jc s\n"
+            "cmn1 p jc s\n"
             "g lj mv\n"
             "a gl\n"
             "nx cm tc"

@@ -103,9 +103,9 @@ A NMC economiza tokens porque troca frases completas por blocos semânticos curt
 
 ## NAM — Notação de Abreviação Mnemônica (direção de pesquisa)
 
-A NAM é uma versão mais comprimida da NMC. Aproxima-se do nível L3 da própria NMC.
+A NAM é uma versão mais comprimida da NMC. Explora a faixa de compressão pesada que um rascunho removido (L3) também ocupava — substitui palavras por abreviações semânticas.
 
-Ela usa abreviações semânticas. As palavras ainda dão pistas do significado, mas são mais curtas.
+As palavras ainda dão pistas do significado, mas são mais curtas.
 
 **Exemplo:**
 
@@ -127,20 +127,20 @@ nx means next
 keeps pistasHumanas
 reduces palavrasLongas
 status researchDirection
-overlapsWith nmcL3
+note heavyCompressionBand
 ```
 
 **Interpretação:** projeto `javaCrud` em estado atual; objetivo aprender Java e Maven; aplicação biblioteca de jogos; próximos passos model e testes.
 
 A NAM economiza mais tokens que a NMC, mas exige que o leitor entenda as abreviações.
 
-**Use NAM apenas se** os números empíricos justificarem o custo de manter um protocolo separado de NMC L3. Até lá, prefira NMC L3 com dicionário embutido.
+**Use NAM apenas se** os números empíricos justificarem o custo de manter um protocolo separado. O rascunho L3 removido da NMC testou exatamente essa faixa e não bateu L2 — a NAM herda esse risco e teria que ultrapassar uma barra mais alta.
 
 ---
 
 ## NHC — Notação Híbrida Codificada (direção de pesquisa)
 
-A NHC mistura palavras semânticas com códigos curtos definidos em um dicionário. Sobrepõe-se diretamente ao L3 da NMC.
+A NHC mistura palavras semânticas com códigos curtos definidos em um dicionário. Explora a mesma faixa comprimida por dicionário que um rascunho L3 removido da NMC ocupava.
 
 Ela substitui termos muito repetidos por códigos, mantendo algumas palavras legíveis.
 
@@ -174,14 +174,14 @@ uses codigos paraTermosRepetidos
 requires dicionarioParcial
 bestFor contextoRepetido
 status researchDirection
-overlapsWith nmcL3
+note dictionaryCompressionBand
 ```
 
 **Interpretação:** `project javaCrud state`; `goal learnJava maven`; `app gameLibrary`; `next model tests`.
 
 A NHC economiza mais que NMC e NAM, mas depende de um dicionário.
 
-**Use NHC apenas se** medições mostrarem ganho real sobre NMC L3 com dicionário embutido.
+**Use NHC apenas se** medições mostrarem ganho real sobre o NMC L2 canônico — o rascunho L3 removido ficava nessa mesma faixa e perdeu para L2 em tokens.
 
 ---
 
@@ -300,7 +300,6 @@ status researchDirection
 nmc1 prompt notationSelection rules
 if precisaHumanoLer use tec
 if querMelhorEquilibrio use nmc
-if querMaisCompressao use nmcL3 withInlineDict
 if pesquisandoCompressaoExtrema explore nnv ndc
 principle meaning > consistency > tokenSaving > beauty
 ```

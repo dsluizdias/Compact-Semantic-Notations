@@ -210,49 +210,7 @@ reader aiPrimary humanSecondary
 
 ---
 
-## 9. Compact keys for L3 (discouraged)
-
-L3 should only be used when this dictionary is embedded in the same file as the block. Without that, single-letter keys are ambiguous and can erase the token savings. See `spec.md` §12 for the detailed rules.
-
-| Short | Expansion |
-|---|---|
-| `c1` | `cmn1` |
-| `p` | `project` |
-| `d` | `doc` |
-| `t` | `task` |
-| `s` | `state` |
-| `pl` | `plan` |
-| `sp` | `spec` |
-| `ctx` | `context` |
-| `g` | `goal` |
-| `u` | `use` |
-| `dc` | `dec` |
-| `pb` | `prob` |
-| `nx` | `next` |
-| `r` | `rule` |
-| `rq` | `req` |
-| `rs` | `risk` |
-| `w` | `why` |
-| `o` | `out` |
-| `f` | `format` |
-| `l` | `limit` |
-| `pr` | `prio` |
-| `st` | `status` |
-| `nt` | `note` |
-| `rd` | `reader` |
-
-L3 example:
-
-```txt
-c1 p javaCrud s
-g learnJava maven
-a gameLibrary
-nx model tests
-```
-
----
-
-## 10. Rules for new terms
+## 9. Rules for new terms
 
 When creating a new key or value:
 

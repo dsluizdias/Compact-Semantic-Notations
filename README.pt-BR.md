@@ -13,8 +13,8 @@ Não é uma linguagem de programação.
 |---|---|---|
 | TEC | recomendada | Texto Estruturado Compacto — mais próxima da prosa humana |
 | **NMC** | recomendada | **Notação principal deste repositório** — blocos chave/valor semânticos |
-| NAM | direção de pesquisa | Notação de Abreviação Mnemônica; sobrepõe ao L3 da NMC |
-| NHC | direção de pesquisa | Notação Híbrida Codificada; sobrepõe ao L3 da NMC |
+| NAM | direção de pesquisa | Notação de Abreviação Mnemônica; faixa de compressão pesada |
+| NHC | direção de pesquisa | Notação Híbrida Codificada; faixa comprimida por dicionário |
 | NNV | direção de pesquisa | Notação Numérica Versionada |
 | NDC | direção de pesquisa | Notação Densa Codificada; apenas para benchmarks |
 

@@ -23,22 +23,13 @@ app gameLibrary
 next createModels implementTests
 ```
 
-CMN L2:
+CMN L2 (recommended default):
 
 ```txt
 cmn1 proj javaCrud state
 goal learnJava maven codeOrg
 app gameLibrary
 next models tests
-```
-
-CMN L3:
-
-```txt
-c1 p javaCrud s
-g learnJava maven codeOrg
-a gameLibrary
-nx models tests
 ```
 
 ---
@@ -229,10 +220,10 @@ Expected expansion:
 
 ---
 
-## 12. Bad example
+## 12. Bad example (over-abbreviation)
 
 ```txt
-c1 p jc s
+cmn1 p jc s
 g lj mv
 a gl
 nx cm tc
@@ -240,15 +231,15 @@ nx cm tc
 
 Problems:
 
-- depends too heavily on the dictionary;
-- `jc`, `lj`, `mv`, `gl`, `cm`, and `tc` are ambiguous;
+- `jc`, `lj`, `mv`, `gl`, `cm`, and `tc` are ambiguous: `jc` could be `javaCrud` or `jUnitConfig`; `mv` could be `maven` or `move`;
+- single-letter keys (`p`, `s`, `g`, `a`) buy nothing in BPE tokenizers — `project`, `state`, `goal`, `app` were already 1 token each;
 - humans and AIs may interpret them incorrectly.
 
-Better version:
+Better version (canonical L2):
 
 ```txt
-c1 p javaCrud s
-g learnJava maven
-a gameLibrary
-nx createModel testClasses
+cmn1 proj javaCrud state
+goal learnJava maven
+app gameLibrary
+next createModel testClasses
 ```
