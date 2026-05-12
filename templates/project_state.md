@@ -1,7 +1,7 @@
-# Project State — NMC Template
+# Project State — CMN Template
 
 ```txt
-nmc1 project projectName state
+cmn1 project projectName state
 goal projectGoal
 reader aiPrimary humanSecondary
 status wip
@@ -10,7 +10,7 @@ status wip
 ## Summary
 
 ```txt
-nmc1 project projectName summary
+cmn1 project projectName summary
 purpose shortProjectPurpose
 scope includedFeature1 includedFeature2
 out expectedResult

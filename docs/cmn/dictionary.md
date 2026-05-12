@@ -1,12 +1,12 @@
-# NMC Dictionary — Official Dictionary
+# CMN Dictionary — Official Dictionary
 
-Version: `nmc1`
+Version: `cmn1`
 Status: experimental
 (Portuguese version: [dictionary.pt-BR.md](dictionary.pt-BR.md))
 
-This file defines the base vocabulary of **NMC — Compact Mnemonic Notation**.
+This file defines the base vocabulary of **CMN — Compact Mnemonic Notation**.
 
-The dictionary keeps consistency across NMC blocks, reduces ambiguity, and helps AIs expand blocks correctly.
+The dictionary keeps consistency across CMN blocks, reduces ambiguity, and helps AIs expand blocks correctly.
 
 ---
 
@@ -42,6 +42,29 @@ The dictionary keeps consistency across NMC blocks, reduces ambiguity, and helps
 | `test` | test | expected validation |
 | `metric` | metric | way of measuring result |
 | `example` | example | usage example |
+| `name` | name | proper or canonical name |
+| `style` | style | writing or visual style |
+| `syntax` | syntax | structural form |
+| `compression` | compression | how much it shrinks tokens |
+| `aiUnderstanding` | AI understanding | how well an AI reads it |
+| `humanReading` | human reading | how well a human reads it |
+| `useCase` | use case | when to use it |
+| `avoidWhen` | avoid when | when not to use it |
+| `notation` | notation | sub-record discriminator for notation comparisons |
+| `app` | application | application or product name |
+| `mvp` | MVP | minimum viable product scope |
+| `entity` | entity | domain entity (e.g., API resource) |
+| `fields` | fields | entity fields |
+| `ops` | operations | supported operations |
+| `done` | done | items finished |
+| `wip` | WIP | items in progress |
+| `missing` | missing | items not yet present |
+| `impact` | impact | downstream effect of a decision |
+| `alternatives` | alternatives | options considered |
+| `mitigation` | mitigation | risk reduction action |
+| `sections` | sections | sub-divisions of a document |
+| `focus` | focus | where attention should go |
+| `principle` | principle | guiding principle |
 
 ---
 
@@ -193,7 +216,7 @@ L3 should only be used when this dictionary is embedded in the same file as the 
 
 | Short | Expansion |
 |---|---|
-| `n1` | `nmc1` |
+| `c1` | `cmn1` |
 | `p` | `project` |
 | `d` | `doc` |
 | `t` | `task` |
@@ -221,7 +244,7 @@ L3 should only be used when this dictionary is embedded in the same file as the 
 L3 example:
 
 ```txt
-n1 p javaCrud s
+c1 p javaCrud s
 g learnJava maven
 a gameLibrary
 nx model tests

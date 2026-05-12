@@ -1,10 +1,10 @@
-# NMC Spec — Compact Mnemonic Notation
+# CMN Spec — Compact Mnemonic Notation
 
-Version: `nmc1`
+Version: `cmn1`
 Status: experimental
 Base language of this spec: English (Portuguese version: [spec.pt-BR.md](spec.pt-BR.md))
 
-**NMC (Compact Mnemonic Notation)** is a compact, structured, semantic notation for storing documentation, implementation plans, decisions, and project context that humans may not reread often but that AIs may need to consume repeatedly.
+**CMN (Compact Mnemonic Notation)** is a compact, structured, semantic notation for storing documentation, implementation plans, decisions, and project context that humans may not reread often but that AIs may need to consume repeatedly.
 
 It is **not a programming language**.
 It is a writing convention for AI-reusable context.
@@ -13,7 +13,7 @@ It is a writing convention for AI-reusable context.
 
 ## 1. Purpose
 
-NMC exists to:
+CMN exists to:
 
 - reduce token usage;
 - preserve meaning;
@@ -22,10 +22,10 @@ NMC exists to:
 - record decisions, states, and project plans;
 - avoid documentation that is too long to reread on every new chat.
 
-Summary in NMC:
+Summary in CMN:
 
 ```txt
-nmc1 spec purpose
+cmn1 spec purpose
 use docs plans implPlans projectCtx
 reader aiPrimary humanSecondary
 goal lowTokens keepMeaning lowAmbiguity
@@ -35,7 +35,7 @@ goal lowTokens keepMeaning lowAmbiguity
 
 ## 2. Core principle
 
-NMC priority order:
+CMN priority order:
 
 ```txt
 meaning > consistency > tokenSaving > beauty
@@ -54,7 +54,7 @@ If a compression saves tokens but creates serious ambiguity, it must be avoided.
 
 ## 3. AI reading contract
 
-An AI must interpret NMC as compact semantic notes, not as executable code.
+An AI must interpret CMN as compact semantic notes, not as executable code.
 
 ```txt
 readMode semanticCompact
@@ -77,10 +77,10 @@ Reading rules:
 
 ## 4. Basic structure
 
-An NMC block follows this structure:
+A CMN block follows this structure:
 
 ```txt
-nmc1 domain topic type
+cmn1 domain topic type
 key value value
 key value value
 ```
@@ -88,7 +88,7 @@ key value value
 Example:
 
 ```txt
-nmc1 project javaCrud state
+cmn1 project javaCrud state
 goal learnJava maven
 app gameLibrary
 next createModel testClasses
@@ -96,7 +96,7 @@ next createModel testClasses
 
 Interpretation:
 
-- `nmc1`: notation version;
+- `cmn1`: notation version;
 - `project`: domain;
 - `javaCrud`: topic;
 - `state`: block type;
@@ -106,27 +106,60 @@ Interpretation:
 
 ---
 
+## 4.1 Sub-records
+
+A block may contain repeated sub-records by reusing a **discriminator key**. The discriminator is the first repeated content key in the block. Each line starting with the discriminator opens a new sub-record; all following content lines belong to that sub-record until the next occurrence of the discriminator.
+
+Example:
+
+```txt
+cmn1 notations summary
+goal compareCompactNotationTypes
+
+notation cst
+name compactStructuredText
+compression lowMed
+
+notation cmn
+name compactMnemonicNotation
+compression medHigh
+```
+
+Here `notation` is the discriminator. Two sub-records exist: `cst` and `cmn`, each carrying its own `name` and `compression`.
+
+Rules:
+
+- one discriminator per block;
+- the discriminator appears in the dictionary or is documented inline;
+- a blank line MAY precede a new sub-record for readability;
+- order is preserved by readers;
+- if you need more than ~10 sub-records, prefer multiple top-level blocks instead.
+
+When in doubt, prefer multiple top-level blocks (the convention used in `templates/decision_log.md`). Use sub-records only when the comparison reads better as a single unit.
+
+---
+
 ## 5. Header
 
 Recommended format:
 
 ```txt
-nmc1 domain topic type
+cmn1 domain topic type
 ```
 
 Examples:
 
 ```txt
-nmc1 project mediaLib plan
-nmc1 study java roadmap
-nmc1 doc api decision
-nmc1 task authBug state
+cmn1 project mediaLib plan
+cmn1 study java roadmap
+cmn1 doc api decision
+cmn1 task authBug state
 ```
 
 Avoid, as default:
 
 ```txt
-NMCv1|PROJECT|JAVA_CRUD|STATE
+CMNv1|PROJECT|JAVA_CRUD|STATE
 ```
 
 Reason: symbols like `|`, `_`, `=`, and heavy uppercase can inflate token counts depending on the tokenizer.
@@ -294,7 +327,7 @@ Interpretation:
 More comfortable for humans.
 
 ```txt
-nmc1 project javaCrud state
+cmn1 project javaCrud state
 goal learnJava maven
 app gameLibrary
 next createModel testClasses
@@ -305,7 +338,7 @@ next createModel testClasses
 More compact, still safe.
 
 ```txt
-nmc1 proj javaCrud state
+cmn1 proj javaCrud state
 goal learnJava maven
 app gameLibrary
 next model tests
@@ -316,7 +349,7 @@ next model tests
 More economical, but depends on an external dictionary.
 
 ```txt
-n1 p javaCrud s
+c1 p javaCrud s
 g learnJava maven
 a gameLibrary
 nx model tests
@@ -325,7 +358,7 @@ nx model tests
 Required dictionary:
 
 ```txt
-n1 nmc1
+c1 cmn1
 p project
 s state
 g goal
@@ -347,7 +380,7 @@ If the dictionary cannot ride along, prefer L2.
 
 ## 13. Ambiguity rules
 
-NMC must avoid compression when:
+CMN must avoid compression when:
 
 - similar-sounding terms exist;
 - an abbreviation could mean multiple things;
@@ -376,19 +409,19 @@ r atl
 Current version:
 
 ```txt
-nmc1
+cmn1
 ```
 
 Breaking changes must create a new version:
 
 ```txt
-nmc2
+cmn2
 ```
 
 Backward-compatible changes can use a minor version in documentation:
 
 ```txt
-nmc1 spec v0.2
+cmn1 spec v0.2
 ```
 
 ---
@@ -401,7 +434,7 @@ New keys must be:
 - semantic;
 - lowercase;
 - preferably common simple technical English;
-- documented in `docs/dictionary.md`.
+- documented in [`dictionary.md`](dictionary.md).
 
 Good examples:
 
@@ -425,7 +458,7 @@ veryImportantProjectThing
 
 ## 16. Recommended usage
 
-Use NMC for:
+Use CMN for:
 
 - `AI_CONTEXT.md`;
 - implementation plans;
@@ -435,7 +468,7 @@ Use NMC for:
 - task states;
 - reusable technical summaries.
 
-Avoid NMC for:
+Avoid CMN for:
 
 - final formal text;
 - public-facing documentation for non-technical readers;

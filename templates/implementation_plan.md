@@ -1,7 +1,7 @@
-# Implementation Plan — NMC Template
+# Implementation Plan — CMN Template
 
 ```txt
-nmc1 project projectName plan
+cmn1 project projectName plan
 goal implementationGoal
 status draft
 reader aiPrimary humanSecondary

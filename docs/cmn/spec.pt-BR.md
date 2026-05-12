@@ -106,6 +106,39 @@ Interpretação:
 
 ---
 
+## 4.1 Sub-registros
+
+Um bloco pode conter sub-registros repetidos reutilizando uma **chave discriminadora**. A discriminadora é a primeira chave de conteúdo repetida no bloco. Cada linha que começa com a discriminadora abre um novo sub-registro; todas as linhas de conteúdo seguintes pertencem àquele sub-registro até a próxima ocorrência da discriminadora.
+
+Exemplo:
+
+```txt
+nmc1 notations summary
+goal compareCompactNotationTypes
+
+notation tec
+name textoEstruturadoCompacto
+compression lowMed
+
+notation nmc
+name notacaoMnemonicaCompacta
+compression medHigh
+```
+
+Aqui `notation` é a discriminadora. Existem dois sub-registros: `tec` e `nmc`, cada um carregando seu próprio `name` e `compression`.
+
+Regras:
+
+- uma discriminadora por bloco;
+- a discriminadora aparece no dicionário ou é documentada no próprio bloco;
+- uma linha em branco PODE preceder um novo sub-registro para legibilidade;
+- a ordem é preservada pelos leitores;
+- se forem necessários mais de ~10 sub-registros, prefira múltiplos blocos de nível superior.
+
+Em caso de dúvida, prefira múltiplos blocos de nível superior (a convenção usada em `templates/decision_log.md`). Use sub-registros apenas quando a comparação ficar melhor como uma unidade única.
+
+---
+
 ## 5. Cabeçalho
 
 Formato recomendado:
@@ -401,7 +434,7 @@ Novas chaves devem ser:
 - semânticas;
 - em minúsculas;
 - preferencialmente conhecidas em inglês técnico simples;
-- documentadas em `docs/dictionary.md`.
+- documentadas em [`dictionary.pt-BR.md`](dictionary.pt-BR.md).
 
 Exemplo bom:
 

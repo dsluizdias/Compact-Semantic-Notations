@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-measure_tokens.py — Measure token counts for NMC test cases.
+measure_tokens.py — Measure token counts for CMN test cases.
 
-Compares the "normal text" form against the NMC form for each case in
-docs/tests.md and reports savingPercent.
+Compares the "normal text" form against the CMN form for each case in
+docs/cmn/tests.md and reports savingPercent.
 
 Usage:
     python3 tools/measure_tokens.py [--encoding cl100k_base|o200k_base]
@@ -25,7 +25,7 @@ from dataclasses import dataclass
 class Case:
     name: str
     normal: str
-    nmc: str
+    cmn: str
 
 
 CASES: list[Case] = [
@@ -36,8 +36,8 @@ CASES: list[Case] = [
             "Java, Maven e organização de código. A aplicação será uma biblioteca "
             "de jogos. Os próximos passos são criar os models e implementar testes."
         ),
-        nmc=(
-            "nmc1 project javaCrud state\n"
+        cmn=(
+            "cmn1 project javaCrud state\n"
             "goal learnJava maven codeOrg\n"
             "app gameLibrary\n"
             "next createModels implementTests"
@@ -51,8 +51,8 @@ CASES: list[Case] = [
             "atualizado e organizado por objetivo, estado atual, decisões, "
             "problemas e próximos passos."
         ),
-        nmc=(
-            "nmc1 doc aiContext plan\n"
+        cmn=(
+            "cmn1 doc aiContext plan\n"
             "goal storeProjectCtx\n"
             "use futureChats\n"
             "format markdown\n"
@@ -68,8 +68,8 @@ CASES: list[Case] = [
             "Java e Maven. A aplicação será uma biblioteca de jogos. Os próximos "
             "passos são criar o model e as classes de teste."
         ),
-        nmc=(
-            "n1 p jc s\n"
+        cmn=(
+            "c1 p jc s\n"
             "g lj mv\n"
             "a gl\n"
             "nx cm tc"
@@ -79,7 +79,7 @@ CASES: list[Case] = [
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Measure NMC token savings.")
+    parser = argparse.ArgumentParser(description="Measure CMN token savings.")
     parser.add_argument(
         "--encoding",
         default="cl100k_base",
@@ -101,13 +101,13 @@ def main() -> int:
     enc = tiktoken.get_encoding(args.encoding)
 
     print(f"Encoding: {args.encoding}\n")
-    header = f"{'Case':<28} {'normal':>8} {'nmc':>6} {'saving%':>8}"
+    header = f"{'Case':<28} {'normal':>8} {'cmn':>6} {'saving%':>8}"
     print(header)
     print("-" * len(header))
 
     for case in CASES:
         n = len(enc.encode(case.normal))
-        m = len(enc.encode(case.nmc))
+        m = len(enc.encode(case.cmn))
         saving = (1 - m / n) * 100 if n else 0.0
         print(f"{case.name:<28} {n:>8} {m:>6} {saving:>7.1f}%")
 

@@ -42,6 +42,29 @@ O objetivo do dicionário é manter consistência entre diferentes blocos NMC, r
 | `test` | teste | validação esperada |
 | `metric` | métrica | forma de medir resultado |
 | `example` | exemplo | exemplo de uso |
+| `name` | nome | nome próprio ou canônico |
+| `style` | estilo | estilo de escrita ou visual |
+| `syntax` | sintaxe | forma estrutural |
+| `compression` | compressão | quanto reduz tokens |
+| `aiUnderstanding` | compreensão IA | quão bem uma IA lê |
+| `humanReading` | leitura humana | quão bem um humano lê |
+| `useCase` | caso de uso | quando usar |
+| `avoidWhen` | evitar quando | quando não usar |
+| `notation` | notação | discriminador de sub-registros em comparações de notações |
+| `app` | aplicação | nome de aplicação ou produto |
+| `mvp` | MVP | escopo mínimo viável |
+| `entity` | entidade | entidade de domínio (ex.: recurso de API) |
+| `fields` | campos | campos da entidade |
+| `ops` | operações | operações suportadas |
+| `done` | feito | itens concluídos |
+| `wip` | em andamento | itens em progresso |
+| `missing` | ausente | itens ainda não presentes |
+| `impact` | impacto | efeito posterior de uma decisão |
+| `alternatives` | alternativas | opções consideradas |
+| `mitigation` | mitigação | ação de redução de risco |
+| `sections` | seções | subdivisões de um documento |
+| `focus` | foco | para onde direcionar atenção |
+| `principle` | princípio | princípio norteador |
 
 ---
 
